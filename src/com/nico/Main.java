@@ -47,5 +47,6 @@ public class Main {
 
         System.out.println("durée residuelle du bouclier du vaisseau-monde : "+vaisseauMonde.resistanceDuBouclier);
         System.out.println("le blindage du vaisseau-monde est maintenant de : "+vaisseauMonde.blindage);
+        
     }
 }
