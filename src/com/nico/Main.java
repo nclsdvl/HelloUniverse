@@ -1,5 +1,7 @@
 package com.nico;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -20,42 +22,25 @@ public class Main {
         PlaneteGazeuse neptune = new PlaneteGazeuse("Neptune");
         neptune.diametre = 49532;
 
-        VaisseauDeGuerre chasseur=new VaisseauDeGuerre("CHASSEUR");
-        chasseur.blindage=156;
-        chasseur.resistanceDuBouclier=2;
+        VaisseauDeGuerre chasseur = new VaisseauDeGuerre("CHASSEUR");
+        VaisseauDeGuerre fregate = new VaisseauDeGuerre("FREGATE");
+        VaisseauDeGuerre croiseur = new VaisseauDeGuerre("CROISEUR");
+        VaisseauCivil cargo = new VaisseauCivil("CARGO");
+        VaisseauCivil vaisseauMonde = new VaisseauCivil("VAISSEAU-MONDE");
 
-        VaisseauCivil vaisseauMonde=new VaisseauCivil("VAISSEAU-MONDE");
-        vaisseauMonde.blindage=4784;
-        vaisseauMonde.resistanceDuBouclier=30;
 
-        vaisseauMonde.activerBouclier();
-        //chasseur.activerBouclier();
-        chasseur.attaque(vaisseauMonde, "laser photonique", 3);
-        //vaisseauMonde.desactiverBouclier();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Quelle vaisseau souhaitez vous utiliser?");
+        String vaisseau = sc.nextLine();
 
-        System.out.println("Le Vaisseau-Monde dispose encore de "+vaisseauMonde.resistanceDuBouclier+" minutes de protection grâce à son bouclier.");
-        System.out.println("Le Vaisseau-Monde dispose encore d'un blindage de valeur "+vaisseauMonde.blindage+".");
 
-        mars.accueillirVaisseau(vaisseauMonde);
-        mars.accueillirVaisseau(chasseur);
+        System.out.println("Sur quelle planete souhaitez vous vous rendre?");
+        Scanner sc1 = new Scanner(System.in);
+        String planete = sc.nextLine();
 
-        Vaisseau chasseurSurTerre = new VaisseauDeGuerre("CHASSEUR");
-        terre.accueillirVaisseau(chasseurSurTerre);
-        System.out.println("Le chasseur à rejeté : "+ chasseurSurTerre.emporterCargaison(20)+" tonnes!");
+        System.out.println("Quel tonnage souhaitez vous emporter?");
+        Scanner sc2 = new Scanner(System.in);
+        int tonnage = sc.nextInt();
 
-        Vaisseau fregate = new VaisseauDeGuerre("FREGATE");
-        fregate.nbPassagers=100;
-        terre.accueillirVaisseau(fregate);
-        System.out.println("La fregate à rejeté "+fregate.emporterCargaison(45)+" tonnes");
-        System.out.println("La fregate à rejeté "+fregate.emporterCargaison(12)+" tonnes");
-
-        Vaisseau fregate2 = new VaisseauDeGuerre("FREGATE");
-        fregate2.nbPassagers=14;
-        terre.accueillirVaisseau(fregate2);
-        System.out.println("La deuxieme fregate à rejeter "+fregate2.emporterCargaison(30)+" tonnes");
-
-        terre.accueillirVaisseau(vaisseauMonde);
-        System.out.println("Le Vaisseau-Monde à rejeté "+ vaisseauMonde.emporterCargaison(1560)+" tonnes");
-        System.out.println("Le vaisseau-Monde à rejeté "+vaisseauMonde.emporterCargaison(600)+" tonnes");
     }
 }
