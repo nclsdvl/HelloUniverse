@@ -1,12 +1,11 @@
 package com.nico;
 
-public class Planete {
+public abstract class Planete {
     String nom;
     int diametre;
-    String matiere;
-    int totalVisiteurs;
+
     Atmosphere atmosphere;
-    Vaisseau vaisseauAccoste;
+
     static String forme="Sphérique";
     static int nbPlanetesDecouvertes;
 
@@ -36,4 +35,3 @@ public class Planete {
         }
     }
 }
-
