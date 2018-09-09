@@ -25,17 +25,7 @@ public class Planete {
         return degres/360;
     }
 
-    Vaisseau accueillirVaisseau(Vaisseau nouveauVaisseau){
 
-        totalVisiteurs+=nouveauVaisseau.nbPassagers;
-
-        Vaisseau vaisseauPrecedent=vaisseauAccoste;
-
-        vaisseauAccoste=nouveauVaisseau;
-
-        return vaisseauPrecedent;
-
-    }
 
     static String expansion (double milliardsDAnneesLumiere){
         if (milliardsDAnneesLumiere < 14){
@@ -46,3 +36,4 @@ public class Planete {
         }
     }
 }
+

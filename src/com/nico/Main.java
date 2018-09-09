@@ -3,40 +3,40 @@ package com.nico;
 public class Main {
 
     public static void main(String[] args) {
-        Planete mercure = new Planete("Mercure");
+        PlaneteTellurique mercure = new PlaneteTellurique("Mercure");
         mercure.diametre = 4880;
-        mercure.matiere = "Tellurique";
-        Planete venus = new Planete("Venus");
+
+        PlaneteTellurique venus = new PlaneteTellurique("Venus");
         venus.diametre = 12100;
-        venus.matiere = "Tellurique";
-        Planete terre = new Planete("Terre");
+
+        PlaneteTellurique terre = new PlaneteTellurique("Terre");
         terre.diametre = 12756;
-        terre.matiere = "Tellurique";
-        Planete mars = new Planete("Mars");
+
+        PlaneteTellurique mars = new PlaneteTellurique("Mars");
         mars.diametre = 6792;
-        mars.matiere = "Tellurique";
-        Planete jupiter = new Planete("Jupiter");
+
+        PlaneteGazeuse jupiter = new PlaneteGazeuse("Jupiter");
         jupiter.diametre = 142984;
-        jupiter.matiere = "Gazeuse";
-        Planete saturne = new Planete("Saturne");
+
+        PlaneteGazeuse saturne = new PlaneteGazeuse("Saturne");
         saturne.diametre = 120536;
-        saturne.matiere = "Gazeuse";
-        Planete uranus = new Planete("Uranus");
+
+        PlaneteGazeuse uranus = new PlaneteGazeuse("Uranus");
         uranus.diametre = 51118;
-        uranus.matiere = "Gazeuse";
-        Planete neptune = new Planete("Neptune");
+
+        PlaneteGazeuse neptune = new PlaneteGazeuse("Neptune");
         neptune.diametre = 49532;
-        neptune.matiere = "Gazeuse";
+
 
         VaisseauDeGuerre chasseur = new VaisseauDeGuerre();
-        chasseur.type ="CHASSEUR";
         chasseur.blindage=156;
         chasseur.resistanceDuBouclier=2;
+        chasseur.type= "CHASSEUR";
 
         VaisseauCivil vaisseauMonde = new VaisseauCivil();
-        vaisseauMonde.type="VAISSEAU-MONDE";
         vaisseauMonde.blindage=4784;
         vaisseauMonde.resistanceDuBouclier=30;
+        vaisseauMonde.type = "VAISSEAU MONDE";
 
         chasseur.activerBouclier();
         vaisseauMonde.activerBouclier();
@@ -48,5 +48,7 @@ public class Main {
         System.out.println("durée residuelle du bouclier du vaisseau-monde : "+vaisseauMonde.resistanceDuBouclier);
         System.out.println("le blindage du vaisseau-monde est maintenant de : "+vaisseauMonde.blindage);
 
+        mars.accueillirVaisseau(vaisseauMonde);
+        mars.accueillirVaisseau(chasseur);
     }
 }
