@@ -2,46 +2,63 @@ package com.nico;
 
 public class PlaneteTellurique extends Planete implements Habitable{
 
-    Vaisseau vaisseauAccoste;
-    int nbTotalHumains;
-    int tailleBaie;
-    Vaisseau[] vaisseauxAccostes;
+    Vaisseau[][] vaisseauxAccostes;
+    int totalVisiteurs;
 
-
-    public PlaneteTellurique(String nom, int tailleBaie) {
+    public PlaneteTellurique(String nom, int nbPlacesBaie) {
         super(nom);
-        this.vaisseauxAccostes = new Vaisseau[tailleBaie];
+        this.vaisseauxAccostes = new Vaisseau[nbPlacesBaie][nbPlacesBaie];
     }
 
-    public boolean restePlaceDisponible() {
-        for (int i = 0; i < vaisseauxAccostes.length; i++) {
-            if (vaisseauxAccostes[i] == null) {
+    boolean restePlaceDisponible(Vaisseau vaisseau) {
+
+        int indexZone = 0;
+
+        switch (vaisseau.type){
+            case CARGO :
+            case VAISSEAUMONDE :
+                indexZone=1;
+        }
+
+
+        for (int i = 0; i < vaisseauxAccostes[indexZone].length; i++) {
+            if (vaisseauxAccostes[indexZone][i] == null) {
                 return true;
             }
+            
         }
         return false;
     }
 
-    public void accueillirVaisseaux(Vaisseau... vaisseau) {
+    public void accueillirVaisseaux(Vaisseau... vaisseaux) {
 
-        for (int i = 0; i < vaisseau.length; i++) {
-            
-            for (int j = 0; j < vaisseauxAccostes.length; j++) {
-                if (vaisseauxAccostes[j] == null) {
-                    vaisseauxAccostes[j] = vaisseau[i];
+        for (int i = 0; i < vaisseaux.length; i++) {
+
+            int indexZone = 0;
+
+            switch (vaisseaux[i].type){
+                case CARGO :
+                case VAISSEAUMONDE :
+                    indexZone=1;
+            }
+
+
+
+            for (int index = 0; index < vaisseauxAccostes[indexZone].length; index++) {
+                if (vaisseauxAccostes[indexZone][index] == null) {
+                    vaisseauxAccostes[indexZone][index] = vaisseaux[i];
                     break;
                 }
             }
 
-            if (vaisseau[i] instanceof VaisseauDeGuerre) {
-                ((VaisseauDeGuerre) vaisseau[i]).desactiverArmes();
+            if (vaisseaux[i] instanceof VaisseauDeGuerre) {
+                ((VaisseauDeGuerre) vaisseaux[i]).desactiverArmes();
             }
 
-            nbTotalHumains += vaisseau[i].nbPassagers;
-
+            totalVisiteurs += vaisseaux[i].nbPassagers;
         }
-
 
     }
 }
+
 

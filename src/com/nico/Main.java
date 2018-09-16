@@ -1,18 +1,18 @@
 package com.nico;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String... args) {
-
-        PlaneteTellurique mercure = new PlaneteTellurique("Mercure",4);
+        PlaneteTellurique mercure = new PlaneteTellurique("Mercure", 1);
         mercure.diametre = 4880;
-        PlaneteTellurique venus = new PlaneteTellurique("Venus", 4);
+        PlaneteTellurique venus = new PlaneteTellurique("Venus", 2);
         venus.diametre = 12100;
         PlaneteTellurique terre = new PlaneteTellurique("Terre", 4);
         terre.diametre = 12756;
-        PlaneteTellurique mars = new PlaneteTellurique("Mars",1);
+        PlaneteTellurique mars = new PlaneteTellurique("Mars", 5);
         mars.diametre = 6792;
         PlaneteGazeuse jupiter = new PlaneteGazeuse("Jupiter");
         jupiter.diametre = 142984;
@@ -23,24 +23,10 @@ public class Main {
         PlaneteGazeuse neptune = new PlaneteGazeuse("Neptune");
         neptune.diametre = 49532;
 
-
-
         Vaisseau chasseur = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
         chasseur.nbPassagers = 3;
         chasseur.blindage = 156;
         chasseur.resistanceDuBouclier = 2;
-
-        Vaisseau chasseur2 = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
-        chasseur2.nbPassagers = 3;
-        chasseur2.blindage = 156;
-        chasseur2.resistanceDuBouclier = 2;
-
-        Vaisseau chasseur3 = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
-        chasseur3.nbPassagers = 3;
-        chasseur3.blindage = 156;
-        chasseur3.resistanceDuBouclier = 2;
-
-
 
         Vaisseau croiseur = new VaisseauDeGuerre(TypeVaisseau.CROISEUR);
         croiseur.nbPassagers = 35;
@@ -62,43 +48,49 @@ public class Main {
         vaisseauMonde.blindage = 4784;
         vaisseauMonde.resistanceDuBouclier = 30;
 
-        terre.accueillirVaisseaux(chasseur2, chasseur3, cargo);
+        Vaisseau chasseur2 = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
+        chasseur2.nbPassagers = 4;
+        chasseur2.blindage = 156;
+        chasseur2.resistanceDuBouclier = 2;
+        Vaisseau chasseur3 = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
+        chasseur3.nbPassagers = 5;
+        chasseur3.blindage = 156;
+        chasseur3.resistanceDuBouclier = 2;
+        Vaisseau cargo2 = new VaisseauCivil(TypeVaisseau.CARGO);
+        cargo2.nbPassagers = 10001;
+        cargo2.blindage = 1520;
+        cargo2.resistanceDuBouclier = 20;
 
-        String recommencer;
-        do {
+        terre.accueillirVaisseaux(chasseur2,chasseur3,cargo2);
 
-
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Quel vaisseau souhaitez vous manipuler​ : CHASSEUR, FREGATE, CROISEUR, CARGO ou VAISSEAU-MONDE ?");
-            String vaisseauSelectionne = sc.nextLine();
-
-            TypeVaisseau typeVaisseau = TypeVaisseau.valueOf(vaisseauSelectionne);
-            Vaisseau vaisseau = null;
-
-
+        Scanner sc = new Scanner(System.in);
+        boolean recommencer = true;
+        while (recommencer) {
+            System.out.println("Quel vaisseau souhaitez vous manipuler​ : " + TypeVaisseau.CHASSEUR.name() + ", " + TypeVaisseau.FREGATE.name() + ", " + TypeVaisseau.CROISEUR.name() + ", " + TypeVaisseau.CARGO.name() + " ou " + TypeVaisseau.VAISSEAUMONDE.name() + " ?");
+            String typeVaisseauString = sc.nextLine();
+            TypeVaisseau typeVaisseau = TypeVaisseau.valueOf(typeVaisseauString);
+            Vaisseau vaisseauSelectionne = null;
             switch (typeVaisseau) {
                 case CHASSEUR:
-                    vaisseau = chasseur;
+                    vaisseauSelectionne = chasseur;
                     break;
                 case FREGATE:
-                    vaisseau = fregate;
+                    vaisseauSelectionne = fregate;
                     break;
                 case CROISEUR:
-                    vaisseau = croiseur;
+                    vaisseauSelectionne = croiseur;
                     break;
                 case CARGO:
-                    vaisseau = cargo;
+                    vaisseauSelectionne = cargo;
                     break;
                 case VAISSEAUMONDE:
-                    vaisseau = vaisseauMonde;
+                    vaisseauSelectionne = vaisseauMonde;
                     break;
             }
 
             System.out.println("Sur quelle planète tellurique du systeme solaire voulez-vous vous poser : Mercure, Venus, Terre ou Mars ?");
             String nomPlanete = sc.nextLine();
             PlaneteTellurique planeteSelectionnee = null;
-
-
             switch (nomPlanete) {
                 case "Mercure":
                     planeteSelectionnee = mercure;
@@ -117,22 +109,22 @@ public class Main {
 
             System.out.println("Quel tonnage souhaitez-vous emporter ?");
             int tonnageSouhaite = sc.nextInt();
-            sc.nextLine();
 
-
-            if (!planeteSelectionnee.restePlaceDisponible()) {
-                System.out.println("Il ne reste pas de place disponible sur : " + nomPlanete);
+            if (planeteSelectionnee.restePlaceDisponible(vaisseauSelectionne)) {
+                planeteSelectionnee.accueillirVaisseaux(vaisseauSelectionne);
+                System.out.println("Le vaisseau a rejeté : " + vaisseauSelectionne.emporterCargaison(tonnageSouhaite) + " tonnes.");
             } else {
-                planeteSelectionnee.accueillirVaisseaux(vaisseau);
-                System.out.println("Le vaisseau a rejeté : " + vaisseau.emporterCargaison(tonnageSouhaite) + " tonnes.");
+                System.out.println("Le vaisseau ne peut pas se poser sur la planète par manque de place dans la baie.");
             }
 
+            System.out.println(Arrays.deepToString(planeteSelectionnee.vaisseauxAccostes));
 
-            System.out.println("Voulez vous recommencer ?");
-            recommencer = sc.nextLine();
+            sc.nextLine();
+            System.out.println("Voulez-vous recommencer oui/non ?");
 
-        }while (recommencer.equalsIgnoreCase("oui"));
+            recommencer = sc.nextLine().equals("oui");
 
+        }
     }
 
 }

@@ -2,15 +2,11 @@ package com.nico;
 
 public enum TypeVaisseau {
 
-    CHASSEUR("chasseur"),
-    FREGATE("fregate"),
-    CROISEUR("croiseur"),
-    CARGO("cargo"),
-    VAISSEAUMONDE("vaisseau-monde");
+    CHASSEUR("Chasseur"), FREGATE("Frégate"), CROISEUR("Croiseur"), CARGO("Cargo"), VAISSEAUMONDE("vaisseauMonde");
+    public String nom;
 
-    String nom;
-
-    TypeVaisseau(String nom){
-        this.nom= nom;
+    TypeVaisseau(String nom) {
+        this.nom = nom;
     }
+
 }
