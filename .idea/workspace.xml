@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="292b3a72-f46f-4cfe-9e5c-58ab0c582c1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/nico/TypeVaisseau.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HelloUniverse/com/nico/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HelloUniverse/com/nico/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HelloUniverse/com/nico/Vaisseau.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HelloUniverse/com/nico/Vaisseau.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HelloUniverse/com/nico/VaisseauCivil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HelloUniverse/com/nico/VaisseauCivil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HelloUniverse/com/nico/VaisseauDeGuerre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HelloUniverse/com/nico/VaisseauDeGuerre.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/nico/Habitable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/nico/Habitable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/nico/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/nico/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/nico/PlaneteTellurique.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/nico/PlaneteTellurique.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/nico/Vaisseau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/nico/Vaisseau.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/nico/VaisseauCivil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/nico/VaisseauCivil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/nico/VaisseauDeGuerre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/nico/VaisseauDeGuerre.java" afterDir="false" />
-    </list>
+    <list default="true" id="292b3a72-f46f-4cfe-9e5c-58ab0c582c1e" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -254,7 +241,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537098100825" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537098690503" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
