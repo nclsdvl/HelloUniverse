@@ -3,25 +3,44 @@ package com.nico;
 public class PlaneteTellurique extends Planete implements Habitable{
 
     Vaisseau vaisseauAccoste;
-    int totalVisiteurs;
+    int nbTotalHumains;
+    int tailleBaie;
+    Vaisseau[] vaisseauxAccostes;
 
-    public PlaneteTellurique(String nom) {
+
+    public PlaneteTellurique(String nom, int tailleBaie) {
         super(nom);
+        this.vaisseauxAccostes = new Vaisseau[tailleBaie];
     }
 
-    public Vaisseau accueillirVaisseau(Vaisseau nouveauVaisseau){
-
-        if (nouveauVaisseau instanceof VaisseauDeGuerre){
-            ((VaisseauDeGuerre)nouveauVaisseau).desactiverArmes();
+    public boolean restePlaceDisponible() {
+        for (int i = 0; i < vaisseauxAccostes.length; i++) {
+            if (vaisseauxAccostes[i] == null) {
+                return true;
+            }
         }
-        else{}
-        totalVisiteurs+=nouveauVaisseau.nbPassagers;
+        return false;
+    }
 
-        Vaisseau vaisseauPrecedent=vaisseauAccoste;
+    public void accueillirVaisseaux(Vaisseau... vaisseau) {
 
-        vaisseauAccoste=nouveauVaisseau;
+        for (int i = 0; i < vaisseau.length; i++) {
+            
+            for (int j = 0; j < vaisseauxAccostes.length; j++) {
+                if (vaisseauxAccostes[j] == null) {
+                    vaisseauxAccostes[j] = vaisseau[i];
+                    break;
+                }
+            }
 
-        return vaisseauPrecedent;
+            if (vaisseau[i] instanceof VaisseauDeGuerre) {
+                ((VaisseauDeGuerre) vaisseau[i]).desactiverArmes();
+            }
+
+            nbTotalHumains += vaisseau[i].nbPassagers;
+
+        }
+
 
     }
 }

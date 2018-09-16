@@ -2,5 +2,5 @@ package com.nico;
 
 public interface Habitable {
 
-     Vaisseau accueillirVaisseau(Vaisseau nouveauVaisseau);
+     void accueillirVaisseaux(Vaisseau... vaisseau);
 }
