@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String... args) {
+
         PlaneteTellurique mercure = new PlaneteTellurique("Mercure");
         mercure.diametre = 4880;
         PlaneteTellurique venus = new PlaneteTellurique("Venus");
@@ -22,25 +23,78 @@ public class Main {
         PlaneteGazeuse neptune = new PlaneteGazeuse("Neptune");
         neptune.diametre = 49532;
 
-        VaisseauDeGuerre chasseur = new VaisseauDeGuerre("CHASSEUR");
-        VaisseauDeGuerre fregate = new VaisseauDeGuerre("FREGATE");
-        VaisseauDeGuerre croiseur = new VaisseauDeGuerre("CROISEUR");
-        VaisseauCivil cargo = new VaisseauCivil("CARGO");
-        VaisseauCivil vaisseauMonde = new VaisseauCivil("VAISSEAU-MONDE");
+        Vaisseau chasseur = new VaisseauDeGuerre("CHASSEUR");
+        chasseur.nbPassagers = 3;
+        chasseur.blindage = 156;
+        chasseur.resistanceDuBouclier = 2;
 
+        Vaisseau croiseur = new VaisseauDeGuerre("CROISEUR");
+        croiseur.nbPassagers = 35;
+        croiseur.blindage = 851;
+        croiseur.resistanceDuBouclier = 25;
+
+        Vaisseau fregate = new VaisseauDeGuerre("FREGATE");
+        fregate.nbPassagers = 100;
+        fregate.blindage = 542;
+        fregate.resistanceDuBouclier = 50;
+
+        Vaisseau cargo = new VaisseauCivil("CARGO");
+        cargo.nbPassagers = 10000;
+        cargo.blindage = 1520;
+        cargo.resistanceDuBouclier = 20;
+
+        Vaisseau vaisseauMonde = new VaisseauCivil("VAISSEAU-MONDE");
+        vaisseauMonde.nbPassagers = 10000;
+        vaisseauMonde.blindage = 4784;
+        vaisseauMonde.resistanceDuBouclier = 30;
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Quelle vaisseau souhaitez vous utiliser?");
-        String vaisseau = sc.nextLine();
+        System.out.println("Quel vaisseau souhaitez vous manipuler​ : CHASSEUR, FREGATE, CROISEUR, CARGO ou VAISSEAU-MONDE ?");
+        String typeVaisseau = sc.nextLine();
+        Vaisseau vaisseauSelectionne = null;
+        switch (typeVaisseau) {
+            case "CHASSEUR":
+                vaisseauSelectionne = chasseur;
+                break;
+            case "FREGATE":
+                vaisseauSelectionne = fregate;
+                break;
+            case "CROISEUR":
+                vaisseauSelectionne = croiseur;
+                break;
+            case "CARGO":
+                vaisseauSelectionne = cargo;
+                break;
+            case "VAISSEAU-MONDE":
+                vaisseauSelectionne = vaisseauMonde;
+                break;
+        }
 
+        System.out.println("Sur quelle planète tellurique du systeme solaire voulez-vous vous poser : Mercure, Venus, Terre ou Mars ?");
+        String nomPlanete = sc.nextLine();
+        PlaneteTellurique planeteSelectionnee = null;
+        switch (nomPlanete) {
+            case "Mercure":
+                planeteSelectionnee = mercure;
+                break;
+            case "Venus":
+                planeteSelectionnee = venus;
+                break;
+            case "Terre":
+                planeteSelectionnee = terre;
+                break;
+            case "Mars":
+                planeteSelectionnee = mars;
+                break;
 
-        System.out.println("Sur quelle planete souhaitez vous vous rendre?");
-        Scanner sc1 = new Scanner(System.in);
-        String planete = sc.nextLine();
+        }
 
-        System.out.println("Quel tonnage souhaitez vous emporter?");
-        Scanner sc2 = new Scanner(System.in);
-        int tonnage = sc.nextInt();
+        System.out.println("Quel tonnage souhaitez-vous emporter ?");
+        int tonnageSouhaite = sc.nextInt();
+
+        planeteSelectionnee.accueillirVaisseau(vaisseauSelectionne);
+        System.out.println("Le vaisseau a rejeté : " + vaisseauSelectionne.emporterCargaison(tonnageSouhaite) + " tonnes.");
 
     }
+
 }
