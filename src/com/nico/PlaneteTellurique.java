@@ -20,7 +20,6 @@ public class PlaneteTellurique extends Planete implements Habitable{
                 indexZone=1;
         }
 
-
         for (int i = 0; i < vaisseauxAccostes[indexZone].length; i++) {
             if (vaisseauxAccostes[indexZone][i] == null) {
                 return true;
@@ -31,9 +30,7 @@ public class PlaneteTellurique extends Planete implements Habitable{
     }
 
     public void accueillirVaisseaux(Vaisseau... vaisseaux) {
-
         for (int i = 0; i < vaisseaux.length; i++) {
-
             int indexZone = 0;
 
             switch (vaisseaux[i].type){
@@ -41,16 +38,12 @@ public class PlaneteTellurique extends Planete implements Habitable{
                 case VAISSEAUMONDE :
                     indexZone=1;
             }
-
-
-
             for (int index = 0; index < vaisseauxAccostes[indexZone].length; index++) {
                 if (vaisseauxAccostes[indexZone][index] == null) {
                     vaisseauxAccostes[indexZone][index] = vaisseaux[i];
                     break;
                 }
             }
-
             if (vaisseaux[i] instanceof VaisseauDeGuerre) {
                 ((VaisseauDeGuerre) vaisseaux[i]).desactiverArmes();
             }

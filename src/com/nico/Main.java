@@ -1,27 +1,37 @@
 package com.nico;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     public static void main(String... args) {
+        Galaxie systemeSolaire = new Galaxie();
+        systemeSolaire.nom = "Système Solaire";
+
         PlaneteTellurique mercure = new PlaneteTellurique("Mercure", 1);
         mercure.diametre = 4880;
+        systemeSolaire.Planetes.add(mercure);
         PlaneteTellurique venus = new PlaneteTellurique("Venus", 2);
         venus.diametre = 12100;
+        systemeSolaire.Planetes.add(venus);
         PlaneteTellurique terre = new PlaneteTellurique("Terre", 4);
         terre.diametre = 12756;
+        systemeSolaire.Planetes.add(terre);
         PlaneteTellurique mars = new PlaneteTellurique("Mars", 5);
         mars.diametre = 6792;
+        systemeSolaire.Planetes.add(mars);
         PlaneteGazeuse jupiter = new PlaneteGazeuse("Jupiter");
         jupiter.diametre = 142984;
+        systemeSolaire.Planetes.add(jupiter);
         PlaneteGazeuse saturne = new PlaneteGazeuse("Saturne");
         saturne.diametre = 120536;
+        systemeSolaire.Planetes.add(saturne);
         PlaneteGazeuse uranus = new PlaneteGazeuse("Uranus");
         uranus.diametre = 51118;
+        systemeSolaire.Planetes.add(uranus);
         PlaneteGazeuse neptune = new PlaneteGazeuse("Neptune");
         neptune.diametre = 49532;
+        systemeSolaire.Planetes.add(neptune);
 
         Vaisseau chasseur = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
         chasseur.nbPassagers = 3;
@@ -64,8 +74,9 @@ public class Main {
         terre.accueillirVaisseaux(chasseur2,chasseur3,cargo2);
 
         Scanner sc = new Scanner(System.in);
-        boolean recommencer = true;
-        while (recommencer) {
+
+        String recommencer = "non";
+        do {
             System.out.println("Quel vaisseau souhaitez vous manipuler​ : " + TypeVaisseau.CHASSEUR.name() + ", " + TypeVaisseau.FREGATE.name() + ", " + TypeVaisseau.CROISEUR.name() + ", " + TypeVaisseau.CARGO.name() + " ou " + TypeVaisseau.VAISSEAUMONDE.name() + " ?");
             String typeVaisseauString = sc.nextLine();
             TypeVaisseau typeVaisseau = TypeVaisseau.valueOf(typeVaisseauString);
@@ -88,43 +99,38 @@ public class Main {
                     break;
             }
 
-            System.out.println("Sur quelle planète tellurique du systeme solaire voulez-vous vous poser : Mercure, Venus, Terre ou Mars ?");
-            String nomPlanete = sc.nextLine();
-            PlaneteTellurique planeteSelectionnee = null;
-            switch (nomPlanete) {
-                case "Mercure":
-                    planeteSelectionnee = mercure;
-                    break;
-                case "Venus":
-                    planeteSelectionnee = venus;
-                    break;
-                case "Terre":
-                    planeteSelectionnee = terre;
-                    break;
-                case "Mars":
-                    planeteSelectionnee = mars;
-                    break;
 
+            System.out.println("Sur quelle planète tellurique en partant du soleil voulez-vous vous posez : 1, 2, 3, 4 ?");
+            int nomPlanete = sc.nextInt();
+            sc.nextLine();
+            Planete p=systemeSolaire.Planetes.get(nomPlanete);
+            if (p instanceof PlaneteGazeuse){
+                System.out.println("La planete sélectionnée n'est pas une planète tellurique. Recommencez...");
+                continue;
             }
+            PlaneteTellurique planete= (PlaneteTellurique)p;
+
 
             System.out.println("Quel tonnage souhaitez-vous emporter ?");
             int tonnageSouhaite = sc.nextInt();
 
-            if (planeteSelectionnee.restePlaceDisponible(vaisseauSelectionne)) {
-                planeteSelectionnee.accueillirVaisseaux(vaisseauSelectionne);
+            if (planete.restePlaceDisponible(vaisseauSelectionne)) {
+                planete.accueillirVaisseaux(vaisseauSelectionne);
                 System.out.println("Le vaisseau a rejeté : " + vaisseauSelectionne.emporterCargaison(tonnageSouhaite) + " tonnes.");
             } else {
                 System.out.println("Le vaisseau ne peut pas se poser sur la planète par manque de place dans la baie.");
             }
 
-            System.out.println(Arrays.deepToString(planeteSelectionnee.vaisseauxAccostes));
+            System.out.println(Arrays.deepToString(planete.vaisseauxAccostes));
 
             sc.nextLine();
             System.out.println("Voulez-vous recommencer oui/non ?");
 
-            recommencer = sc.nextLine().equals("oui");
+            recommencer = sc.nextLine();
 
-        }
+        }while (recommencer.equalsIgnoreCase("oui"));
+
+
     }
 
 }
